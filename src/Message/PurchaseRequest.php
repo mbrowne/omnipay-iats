@@ -11,8 +11,8 @@ class PurchaseRequest extends AbstractRequest
 {
     //Test user ID and password from http://home.iatspayments.com/developers/test-credentials,
     //used when testMode is enabled.
-    static public $testUser = 'TEST88';
-    static public $testPassword = 'TEST88';
+    public static $testUser = 'TEST88';
+    public static $testPassword = 'TEST88';
 
     public function setAgentCode($value)
     {
