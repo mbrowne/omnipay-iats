@@ -20,7 +20,7 @@ class PurchaseRequestTest extends TestCase
             'card' => $this->getValidCard(),
         ));
         $data = $request->getData();
-        $this->assertSame('10.00', $data['amount']);
+        $this->assertSame('10.00', $data['total']);
     }
 
     public function testCreditCardSuccess()

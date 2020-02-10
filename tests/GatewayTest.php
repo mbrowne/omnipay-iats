@@ -22,7 +22,6 @@ class GatewayTest extends GatewayTestCase
         $request = $this->gateway->purchase($options);
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseRequest', $request);
-        print_r($request->getData());
-        $this->assertArrayHasKey('amount', $request->getData());
+        $this->assertArrayHasKey('total', $request->getData());
     }
 }
