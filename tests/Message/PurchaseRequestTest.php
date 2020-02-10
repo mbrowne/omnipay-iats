@@ -50,7 +50,7 @@ class PurchaseRequestTest extends TestCase
         $options['card']['number'] = '4111111111111111';
         $response = $this->gateway->purchase($options)->send();
 
-        $this->assertInstanceOf('\Omnipay\iATS\Message\Response', $response);
+        $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNotEmpty($response->getTransactionReference());

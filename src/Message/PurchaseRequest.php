@@ -44,7 +44,7 @@ class PurchaseRequest extends AbstractRequest
         $data = array(
           'recurring' => false,
           'mop' => $this->iatsCreditCardMop($card->getBrand()), //method of payment (Visa, Mastercard, etc.)
-          'customerIPAddress' => $_SERVER['REMOTE_ADDR'],
+          'customerIPAddress' => $this->getClientIp(),
           'firstName' => $card->getFirstName(),
           'lastName' => $card->getLastName(),
           'companyName' => $card->getCompany(),
