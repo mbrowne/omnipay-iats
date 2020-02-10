@@ -2,6 +2,7 @@
 
 namespace Omnipay\iATS;
 
+use Omnipay\iATS\Message\PurchaseRequest;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
