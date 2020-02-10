@@ -27,7 +27,7 @@ class Gateway extends AbstractGateway
             'testMode' => false,
         );
     }
-	
+    
     public function setAgentCode($value)
     {
         return $this->setParameter('agentCode', $value);
@@ -37,7 +37,7 @@ class Gateway extends AbstractGateway
     {
         return $this->getParameter('agentCode');
     }
-	
+    
     public function setPassword($value)
     {
         return $this->setParameter('password', $value);
@@ -47,8 +47,9 @@ class Gateway extends AbstractGateway
     {
         return $this->getParameter('password');
     }
-	
-	public function purchase(array $parameters = array()) {
-		return $this->createRequest('\Omnipay\iATS\Message\PurchaseRequest', $parameters);
-	}
+    
+    public function purchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\iATS\Message\PurchaseRequest', $parameters);
+    }
 }
