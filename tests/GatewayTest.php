@@ -13,8 +13,8 @@ class GatewayTest extends GatewayTestCase
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
         $this->gateway->initialize([
-            'agentCode' => PurchaseRequest::testUser,
-            'password'  => PurchaseRequest::testPassword,
+            'agentCode' => 'TEST88',
+            'password'  => 'TEST88',
             'testMode'  => true,
         ]);   
     }
