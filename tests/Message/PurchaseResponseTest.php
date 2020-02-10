@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Dummy\Message;
+namespace Omnipay\iATS\Message;
 
 use Omnipay\Tests\TestCase;
 
