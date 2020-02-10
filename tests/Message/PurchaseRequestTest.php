@@ -31,7 +31,7 @@ class PurchaseRequestTest extends TestCase
             'card' => $this->getValidCard(),
         );
         $options['card']['number'] = '4111111111111111';
-        $response = $this->gateway->authorize($options)->send();
+        $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
         $this->assertTrue($response->isSuccessful());
@@ -43,18 +43,17 @@ class PurchaseRequestTest extends TestCase
     public function testCreditCardFailure()
     {
         // card numbers ending in odd number should be declined
-        // $options = array(
-        //     'amount' => '10.00',
-        //     'card' => $this->getValidCard(),
-        // );
-        // $options['card']['number'] = '4111111111111111';
-        // $response = $this->gateway->authorize($options)->send();
+        $options = array(
+            'amount' => '10.00',
+            'card' => $this->getValidCard(),
+        );
+        $options['card']['number'] = '4111111111111111';
+        $response = $this->gateway->purchase($options)->send();
 
-        // $this->assertInstanceOf('\Omnipay\iATS\Message\Response', $response);
-        // $this->assertFalse($response->isSuccessful());
-        // $this->assertFalse($response->isRedirect());
-        // $this->assertNotEmpty($response->getTransactionReference());
-        // $this->assertSame('Failure', $response->getMessage());
+        $this->assertInstanceOf('\Omnipay\iATS\Message\Response', $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNotEmpty($response->getTransactionReference());
+        $this->assertSame('Failure', $response->getMessage());
     }
-
 }
