@@ -47,7 +47,7 @@ class Gateway extends AbstractGateway
     {
         return $this->getParameter('password');
     }
-    
+
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\iATS\Message\PurchaseRequest', $parameters);

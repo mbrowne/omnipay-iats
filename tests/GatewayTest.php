@@ -13,27 +13,16 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
     }
 
-    public function testAuthorize()
-    {
-        $options = array(
-            'amount' => '10.00',
-            'card' => $this->getValidCard(),
-        );
-        $request= $this->gateway->authorize($options);
-
-        $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseRequest', $request);
-        $this->assertArrayHasKey('amount', $request->getData());
-    }
-
     public function testPurchase()
     {
         $options = array(
             'amount' => '10.00',
             'card' => $this->getValidCard(),
         );
-        $request= $this->gateway->purchase($options);
+        $request = $this->gateway->purchase($options);
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseRequest', $request);
+        print_r($request->getData());
         $this->assertArrayHasKey('amount', $request->getData());
     }
 }

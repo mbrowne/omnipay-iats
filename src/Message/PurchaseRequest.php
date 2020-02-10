@@ -75,7 +75,6 @@ class PurchaseRequest extends AbstractRequest
           'amex' => 'AMX',
           'discover' => 'DSC',
         );
-
         return $mop[$type];
     }
 
