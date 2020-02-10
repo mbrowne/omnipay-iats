@@ -70,11 +70,12 @@ class PurchaseRequest extends AbstractRequest
     private function iatsCreditCardMop($type)
     {
         $mop = array(
-      'visa' => 'VISA',
-      'mastercard' => 'MC',
-      'amex' => 'AMX',
-      'discover' => 'DSC',
-    );
+          'visa' => 'VISA',
+          'mastercard' => 'MC',
+          'amex' => 'AMX',
+          'discover' => 'DSC',
+        );
+
         return $mop[$type];
     }
 
