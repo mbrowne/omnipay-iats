@@ -10,25 +10,27 @@ class ResponseTest extends TestCase
     {
         $response = new PurchaseResponse(
             $this->getMockRequest(),
-            array('reference' => 'abc123', 'success' => 1, 'message' => 'Success')
+            array('TRANSACTIONID' => 'abc123', 'CUSTOMERCODE' => '123', 'AUTHORIZATIONRESULT' => 'OK')
         );
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('abc123', $response->getTransactionReference());
-        $this->assertSame('Success', $response->getMessage());
+        $this->assertSame('abc123', $response->getTransactionId());
+        $this->assertSame('123', $response->getCustomerCode());
+        $this->assertFalse($response->getMessage());
     }
 
     public function testFailure()
     {
         $response = new PurchaseResponse(
             $this->getMockRequest(),
-            array('reference' => 'abc123', 'success' => 0, 'message' => 'Failure')
+            array('Credit card is invalid')
         );
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('abc123', $response->getTransactionReference());
-        $this->assertSame('Failure', $response->getMessage());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response-getCustomerCode());
+        $this->assertSame('Credit card is invalid', $response->getMessage());
     }
 }
