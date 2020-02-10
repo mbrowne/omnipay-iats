@@ -10,6 +10,11 @@ class PurchaseRequestTest extends TestCase
     public function setUp()
     {
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
+        $this->gateway->initialize([
+            'agentCode' => PurchaseRequest::testUser,
+            'password'  => PurchaseRequest::testPassword,
+            'testMode'  => true,
+        ]);
     }
 
     public function testGetData()
