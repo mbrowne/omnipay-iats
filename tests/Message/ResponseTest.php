@@ -8,7 +8,7 @@ class ResponseTest extends TestCase
 {
     public function testSuccess()
     {
-        $response = new Response(
+        $response = new PurchaseResponse(
             $this->getMockRequest(),
             array('reference' => 'abc123', 'success' => 1, 'message' => 'Success')
         );
@@ -21,7 +21,7 @@ class ResponseTest extends TestCase
 
     public function testFailure()
     {
-        $response = new Response(
+        $response = new PurchaseResponse(
             $this->getMockRequest(),
             array('reference' => 'abc123', 'success' => 0, 'message' => 'Failure')
         );

@@ -5,7 +5,7 @@ namespace Omnipay\iATS\Message;
 use Omnipay\iATS\Gateway;
 use Omnipay\Tests\TestCase;
 
-class CreditCardRequestTest extends TestCase
+class PurchaseRequestTest extends TestCase
 {
     public function setUp()
     {
@@ -14,7 +14,7 @@ class CreditCardRequestTest extends TestCase
 
     public function testGetData()
     {
-        $request = new CreditCardRequest($this->getHttpClient(), $this->getHttpRequest());
+        $request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize(array(
             'amount' => '10.00',
             'card' => $this->getValidCard(),
@@ -33,7 +33,7 @@ class CreditCardRequestTest extends TestCase
         $options['card']['number'] = '4111111111111111';
         $response = $this->gateway->authorize($options)->send();
 
-        $this->assertInstanceOf('\Omnipay\iATS\Message\Response', $response);
+        $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNotEmpty($response->getTransactionReference());
