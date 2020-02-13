@@ -33,6 +33,7 @@ class PurchaseRequestTest extends TestCase
             'card' => $this->getValidCard(),
         );
         $options['card']['number'] = '4111111111111111';
+        $options['card']['cvv'] = '111';
 
         print_r($options['card']);
 
@@ -53,6 +54,8 @@ class PurchaseRequestTest extends TestCase
             'card' => $this->getValidCard(),
         );
         $options['card']['number'] = '4111111111111111';
+        $options['card']['cvv'] = '111';
+        
         $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
