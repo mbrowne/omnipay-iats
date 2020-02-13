@@ -89,11 +89,11 @@ class PurchaseRequest extends AbstractRequest
         $agentCode = $this->getTestMode() ? $this->testUser : $this->getAgentCode();
         $password = $this->getTestMode() ? $this->testPassword : $this->getPassword();
 
-        if($this->useProcessLink())
+        if ($this->useProcessLink())
         {
             $newLink = new iATS\ProcessLink($agentCode, $password);
         }
-        else if($this->useCustomerLink())
+        else if ($this->useCustomerLink())
         {
             $newLink = new iATS\CustomerLink($agentCode, $password);
         }
