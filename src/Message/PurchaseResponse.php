@@ -30,13 +30,13 @@ class PurchaseResponse extends AbstractResponse
             return $this->data;
         }
 
-        return NULL;
+        return null;
     }
     
     public function getTransactionId()
     {
         if (!$this->data['TRANSACTIONID']) {
-            return NULL;
+            return null;
         }
 
         return $this->data['TRANSACTIONID'];
@@ -45,7 +45,7 @@ class PurchaseResponse extends AbstractResponse
     public function getCustomerCode()
     {
         if (!$this->data['CUSTOMERCODE']) {
-            return NULL;
+            return null;
         }
 
         return $this->data['CUSTOMERCODE'];
