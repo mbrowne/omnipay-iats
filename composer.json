@@ -1,0 +1,45 @@
+{
+    "name": "mbrowne/omnipay-iats",
+    "type": "library",
+    "description": "iATS gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "iats",
+        "purchase"
+    ],
+    "homepage": "https://github.com/mbrowne/omnipay-iats",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Browne",
+            "email": "email@example.com"
+        },
+        {
+            "name": "Omnipay Contributors",
+            "homepage": "https://github.com/mbrowne/omnipay-iats/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\iATS\\": "src/"
+        }
+    },
+    "require": {
+        "omnipay/common": "~3.0",
+        "iatspayments/php": "^2.1"
+    },
+    "require-dev": {
+        "omnipay/tests": "~3.0",
+        "squizlabs/php_codesniffer": "~3.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.0.x-dev"
+        }
+    },
+    "prefer-stable": true
+}
