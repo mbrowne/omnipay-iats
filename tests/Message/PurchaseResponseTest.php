@@ -30,7 +30,7 @@ class ResponseTest extends TestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertEmpty($response->getTransactionId());
-        $this->assertEmpty($response-getCustomerCode());
+        $this->assertEmpty($response->getCustomerCode());
         $this->assertSame('Credit card is invalid', $response->getMessage());
     }
 }
