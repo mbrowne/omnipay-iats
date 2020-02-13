@@ -2,6 +2,7 @@
 
 namespace Omnipay\iATS;
 
+use Omnipay;
 use Omnipay\iATS\Message\PurchaseRequest;
 use Omnipay\Tests\GatewayTestCase;
 
