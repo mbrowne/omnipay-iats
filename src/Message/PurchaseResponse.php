@@ -17,14 +17,6 @@ class PurchaseResponse extends AbstractResponse
     
     public function isSuccessful()
     {
-        echo "TEST \n";
-        echo gettype($this->data) .  "\n";
-        echo $this->data . "\n";
-        
-        if (!isset($this->data["AUTHORIZATIONRESULT"])) {
-            return false;
-        }
-
         return (strpos(trim($this->data['AUTHORIZATIONRESULT']), 'OK') === 0);
     }
     
