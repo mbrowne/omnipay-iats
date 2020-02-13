@@ -17,7 +17,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function isSuccessful()
     {
-        var_dump($this->data);
+        print_r($this->data);
         return (strpos(trim($this->data['AUTHORIZATIONRESULT']), 'OK') === 0);
     }
     
