@@ -14,11 +14,6 @@ class PurchaseRequest extends AbstractRequest
     public $testUser = 'TEST88';
     public $testPassword = 'TEST88';
 
-    public const IATS_PROCESS_LINK = 0;
-    public const IATS_CUSTOMER_LINK = 1;
-    public const IATS_DEFAULT_LINK = 0;
-    private $iatsLink = 0;
-
     public function setAgentCode($value)
     {
         return $this->setParameter('agentCode', $value);
@@ -88,13 +83,9 @@ class PurchaseRequest extends AbstractRequest
     {
         $agentCode = $this->getTestMode() ? $this->testUser : $this->getAgentCode();
         $password = $this->getTestMode() ? $this->testPassword : $this->getPassword();
-
-        if ($this->useProcessLink()) {
-            $newLink = new iATS\ProcessLink($agentCode, $password);
-        } elseif ($this->useCustomerLink()) {
-            $newLink = new iATS\CustomerLink($agentCode, $password);
-        }
         
+        $newLink = new iATS\ProcessLink($agentCode, $password);
+
         $result = $newLink->processCreditCard($data);
         return $this->response = new PurchaseResponse($this, $result);
     }
@@ -102,20 +93,5 @@ class PurchaseRequest extends AbstractRequest
     public function getEndpoint()
     {
         return $this->endpoint;
-    }
-
-    private function setLinkType($newLink)
-    {
-        $this->iatsLink = $newLink;
-    }
-
-    private function useProcessLink()
-    {
-        $this->iatsLink = $this->IATS_PROCESS_LINK;
-    }
-
-    private function useCustomerLink()
-    {
-        $this->iatsLink = $this->IATS_CUSTOMER_LINK;
     }
 }
