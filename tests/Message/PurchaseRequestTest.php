@@ -29,11 +29,11 @@ class PurchaseRequestTest extends TestCase
         $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
+        echo "\n --------- \n :";
         echo "\n " . $response->getMessage() . "\n";
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertNotEmpty($response->getTransactionReference());
-        $this->assertSame('Success', $response->getMessage());
+        $this->assertNotEmpty($response->getTransactionId());
     }
 
     public function testCreditCardFailure()
