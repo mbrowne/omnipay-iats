@@ -26,7 +26,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getMessage()
     {
-        if (isSuccessful()) {
+        if ($this->isSuccessful()) {
             return null;
         }
 
@@ -35,7 +35,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getTransactionId()
     {
-        if (!isSuccessful() || !$this->data['TRANSACTIONID']) {
+        if (!$this->isSuccessful() || !$this->data['TRANSACTIONID']) {
             return null;
         }
 
@@ -44,7 +44,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getCustomerCode()
     {
-        if (!isSuccessful() || !$this->data['CUSTOMERCODE']) {
+        if (!$this->isSuccessful() || !$this->data['CUSTOMERCODE']) {
             return null;
         }
 
