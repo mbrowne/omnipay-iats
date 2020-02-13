@@ -26,16 +26,16 @@ class PurchaseResponse extends AbstractResponse
     
     public function getMessage()
     {
-        if (is_string($this->data)) {
-            return $this->data;
+        if (isSuccessful()) {
+            return null;
         }
 
-        return null;
+        return $this->data;
     }
     
     public function getTransactionId()
     {
-        if (is_string($this->data) || !$this->data['TRANSACTIONID']) {
+        if (!isSuccessful() || !$this->data['TRANSACTIONID']) {
             return null;
         }
 
@@ -44,7 +44,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getCustomerCode()
     {
-        if (is_string($this->data) || !$this->data['CUSTOMERCODE']) {
+        if (!isSuccessful() || !$this->data['CUSTOMERCODE']) {
             return null;
         }
 
