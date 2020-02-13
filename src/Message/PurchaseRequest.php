@@ -87,7 +87,6 @@ class PurchaseRequest extends AbstractRequest
         $newLink = new iATS\ProcessLink($agentCode, $password);
 
         $result = $newLink->processCreditCard($data);
-        return $result;
         return $this->response = new PurchaseResponse($this, $result);
     }
 

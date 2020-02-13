@@ -10,7 +10,7 @@ class ResponseTest extends TestCase
     {
         $response = new PurchaseResponse(
             $this->getMockRequest(),
-            array('TRANSACTIONID' => 'abc123', 'CUSTOMERCODE' => '123', 'AUTHORIZATIONRESULT' => 'OK')
+            "array('TRANSACTIONID' => 'abc123', 'CUSTOMERCODE' => '123', 'AUTHORIZATIONRESULT' => 'OK')"
         );
 
         $this->assertTrue($response->isSuccessful());
@@ -23,8 +23,7 @@ class ResponseTest extends TestCase
     public function testFailure()
     {
         $response = new PurchaseResponse(
-            $this->getMockRequest(),
-            array('Credit card is invalid')
+            $this->getMockRequest(), "Credit card is invalid'"
         );
 
         $this->assertFalse($response->isSuccessful());
