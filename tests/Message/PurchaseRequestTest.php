@@ -22,6 +22,8 @@ class PurchaseRequestTest extends TestCase
             'currency' => 'CAD',
             'card' => $this->getValidCard2(),
         );
+
+        print_r($this->getValidCard());
         $options['card']['number'] = '4111111111111111';
         $options['card']['cvv'] = '111';
 
