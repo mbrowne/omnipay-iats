@@ -11,12 +11,8 @@ class GatewayTest extends GatewayTestCase
     {
         parent::setUp();
 
-        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
-        $this->gateway->initialize([
-            'agentCode' => 'TEST88',
-            'password'  => 'TEST88',
-            'testMode'  => true,
-        ]);   
+        $this->gateway = Omnipay::create('iATS');
+        $this->gateway->initialize(['testMode'  => true]);   
     }
 
     public function testPurchase()
