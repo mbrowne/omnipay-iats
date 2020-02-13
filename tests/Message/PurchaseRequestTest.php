@@ -50,7 +50,6 @@ class PurchaseRequestTest extends TestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertEmpty($response->getTransactionId());
-        echo "ERROR: " . $response->getMessage() . "\n";
-        //$this->assertSame('Failure', $response->getMessage());
+        $this->assertSame("Service cannot be used with this Method of Payment or Currency.", $response->getMessage());
     }
 }

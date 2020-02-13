@@ -24,7 +24,7 @@ class ResponseTest extends TestCase
     {
         $response = new PurchaseResponse(
             $this->getMockRequest(),
-            array('Credit card is invalid')
+            "Credit card is invalid."
         );
 
         $this->assertFalse($response->isSuccessful());
