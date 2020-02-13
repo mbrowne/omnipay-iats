@@ -17,7 +17,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function isSuccessful()
     {
-        if (!$this->data['AUTHORIZATIONRESULT']) {
+        if (is_string($this->data) || !$this->data['AUTHORIZATIONRESULT']) {
             return false;
         }
 
@@ -35,7 +35,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getTransactionId()
     {
-        if (!$this->data['TRANSACTIONID']) {
+        if (is_string($this->data) || !$this->data['TRANSACTIONID']) {
             return null;
         }
 
@@ -44,7 +44,7 @@ class PurchaseResponse extends AbstractResponse
     
     public function getCustomerCode()
     {
-        if (!$this->data['CUSTOMERCODE']) {
+        if (is_string($this->data) || !$this->data['CUSTOMERCODE']) {
             return null;
         }
 
