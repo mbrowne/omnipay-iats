@@ -20,16 +20,16 @@ class PurchaseRequestTest extends TestCase
         $options = array(
             'amount' => '10.00',
             'currency' => 'CAD',
-            'card' => $this->getValidCard2(),
+            'card' => $this->getValidCard(),
         );
 
-        print_r($this->getValidCard());
         $options['card']['number'] = '4111111111111111';
         $options['card']['cvv'] = '111';
 
         $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
+        echo "\n " . $response->getMessage() . "\n";
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNotEmpty($response->getTransactionReference());
