@@ -14,6 +14,11 @@ class PurchaseRequest extends AbstractRequest
     public $testUser = 'TEST88';
     public $testPassword = 'TEST88';
 
+    public const IATS_PROCESS_LINK = 0;
+    public const IATS_CUSTOMER_LINK = 1;
+    public const IATS_DEFAULT_LINK = 0;
+    private $iatsLink = 0;
+
     public function setAgentCode($value)
     {
         return $this->setParameter('agentCode', $value);
@@ -59,7 +64,8 @@ class PurchaseRequest extends AbstractRequest
           'creditCardNum' => $card->getNumber(),
           'creditCardExpiry' => $card->getExpiryDate('m').'/'.$card->getExpiryDate('y'),
           'cvv2' => $card->getCvv(),
-          'currency' => $this->getCurrency());
+          'currency' => $this->getCurrency()
+        );
         return $data;
     }
     
@@ -80,19 +86,39 @@ class PurchaseRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        if ($this->getTestMode()) {
-            //Use test credentials from http://home.iatspayments.com/developers/test-credentials
-            $processLink = new iATS\ProcessLink($this->testUser, $this->testPassword);
-        } else {
-            $processLink = new iATS\ProcessLink($this->getAgentCode(), $this->getPassword());
-        }
+        $agentCode = $this->getTestMode() ? $this->testUser : $this->getAgentCode();
+        $password = $this->getTestMode() ? $this->testPassword : $this->getPassword();
 
-        $result = $processLink->processCreditCard($data);
+        if($this->useProcessLink())
+        {
+            $newLink = new iATS\ProcessLink($agentCode, $password);
+        }
+        else if($this->useCustomerLink())
+        {
+            $newLink = new iATS\CustomerLink($agentCode, $password);
+        }
+        
+        $result = $newLink->processCreditCard($data);
         return $this->response = new PurchaseResponse($this, $result);
     }
 
     public function getEndpoint()
     {
         return $this->endpoint;
+    }
+
+    private function setLinkType($newLink)
+    {
+        $this->iatsLink = $newLink;
+    }
+
+    private function useProcessLink()
+    {
+        $this->iatsLink = $this->IATS_PROCESS_LINK;
+    }
+
+    private function useCustomerLink()
+    {
+        $this->iatsLink = $this->IATS_CUSTOMER_LINK;
     }
 }
