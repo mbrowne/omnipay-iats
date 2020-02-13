@@ -29,51 +29,29 @@ class PurchaseRequestTest extends TestCase
         $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
-        echo "\n --------- \n :";
-        echo "\n " . $response->getMessage() . "\n";
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNotEmpty($response->getTransactionId());
+        $this->assertEmpty($response->getMessage());
     }
 
     public function testCreditCardFailure()
     {
         // card numbers ending in odd number should be declined
-        /*$options = array(
+        $options = array(
             'amount' => '10.00',
             'card' => $this->getValidCard(),
         );
         $options['card']['number'] = '4111111111111111';
-        $options['card']['cvv'] = '111';
+        $options['card']['cvv'] = '112';
 
         $response = $this->gateway->purchase($options)->send();
 
         $this->assertInstanceOf('\Omnipay\iATS\Message\PurchaseResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertNotEmpty($response->getTransactionReference());
-        $this->assertSame('Failure', $response->getMessage());*/
-    }
-
-    protected function getValidCard2()
-    {
-        return [
-            // CC
-            'number'          => '4111111111111111',
-            'cvv'             => '111',
-            'expiryMonth'     => '11',
-            'expiryYear'      => '23',
-        
-            // Identity
-            'firstName'       => 'Test',
-            'lastName'        => 'Test2',
-        
-            // Address
-            'billingAddress1' => 'Test ABC',
-            'billingCity'     => 'Test',
-            'billingPostcode' => 'H0H0H0',
-            'billingState'    => 'ON',
-            'billingCountry'  => 'Canada'
-        ];
+        $this->assertEmpty($response->getTransactionId());
+        echo "ERROR: " . $response->getMessage() . "\n";
+        //$this->assertSame('Failure', $response->getMessage());
     }
 }

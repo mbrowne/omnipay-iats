@@ -29,16 +29,25 @@ class PurchaseResponse extends AbstractResponse
         if (is_string($this->data)) {
             return $this->data;
         }
-        return false;
+
+        return NULL;
     }
     
     public function getTransactionId()
     {
+        if (!$this->data['TRANSACTIONID']) {
+            return NULL;
+        }
+
         return $this->data['TRANSACTIONID'];
     }
     
     public function getCustomerCode()
     {
+        if (!$this->data['CUSTOMERCODE']) {
+            return NULL;
+        }
+
         return $this->data['CUSTOMERCODE'];
     }
 }
